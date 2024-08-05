@@ -11,4 +11,7 @@
     <preference for="Klevu\Customer\Service\Provider\CustomerSessionProviderInterface"
                 type="Klevu\Customer\Service\Provider\CustomerSessionProvider"/>
 
+    <preference for="Klevu\Customer\Service\Provider\GroupProviderInterface"
+                type="Klevu\Customer\Service\Provider\GroupProvider"/>
+
 </config>
