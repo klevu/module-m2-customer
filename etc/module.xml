@@ -7,6 +7,7 @@
     <module name="Klevu_Customer">
         <sequence>
             <module name="Magento_Framework"/>
+            <module name="Magento_Customer"/>
         </sequence>
     </module>
 </config>
