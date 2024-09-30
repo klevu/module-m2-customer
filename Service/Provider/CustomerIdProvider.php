@@ -8,25 +8,25 @@ declare(strict_types=1);
 
 namespace Klevu\Customer\Service\Provider;
 
+use Klevu\Customer\Service\HasherInterface;
 use Magento\Framework\Encryption\Encryptor;
-use Magento\Framework\Encryption\EncryptorInterface;
 
 class CustomerIdProvider implements CustomerIdProviderInterface
 {
     private const CUSTOMER_EMAIL_PREFIX = 'cep';
-
+    
     /**
-     * @var EncryptorInterface
+     * @var HasherInterface
      */
-    private readonly EncryptorInterface $encryptor;
+    private HasherInterface $hasher;
 
     /**
-     * @param EncryptorInterface $encryptor
+     * @param HasherInterface $hasher
      */
     public function __construct(
-        EncryptorInterface $encryptor,
+        HasherInterface $hasher,
     ) {
-        $this->encryptor = $encryptor;
+        $this->hasher = $hasher;
     }
 
     /**
@@ -39,9 +39,10 @@ class CustomerIdProvider implements CustomerIdProviderInterface
         return sprintf(
             '%s-%s',
             self::CUSTOMER_EMAIL_PREFIX,
-            $this->encryptor->hash( // @phpstan-ignore-line
-                $email,
-                Encryptor::HASH_VERSION_SHA256,
+            $this->hasher->execute(
+                data: $email,
+                version: Encryptor::HASH_VERSION_SHA256,
+                binary: false,
             ),
         );
     }

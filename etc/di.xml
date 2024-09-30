@@ -14,4 +14,7 @@
     <preference for="Klevu\Customer\Service\Provider\GroupProviderInterface"
                 type="Klevu\Customer\Service\Provider\GroupProvider"/>
 
+    <preference for="Klevu\Customer\Service\HasherInterface"
+                type="Klevu\Customer\Service\Hasher"/>
+
 </config>

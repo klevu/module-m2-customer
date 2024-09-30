@@ -37,9 +37,9 @@ class CustomerIdProviderTest extends TestCase
      */
     private ?ObjectManagerInterface $objectManager = null;
     /**
-     * @var array|false|string[]
+     * @var string[]|false|null
      */
-    private array|false $keys;
+    private array|false|null $keys = null;
 
     /**
      * @return void

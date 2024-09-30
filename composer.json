@@ -2,13 +2,13 @@
     "name": "klevu/module-m2-customer",
     "description": "Provides extension points and APIs that 3rd-party developers can use to change customer data",
     "require": {
-        "php": "~8.1.0|~8.2.0",
+        "php": "~8.1.0|~8.2.0|~8.3.0",
         "psr/log": "*",
         "magento/module-customer": "^103.0.4",
         "magento/framework": "^103.0.4"
     },
     "type": "magento2-module",
-    "version": "0.4.0",
+    "version": "1.0.0",
     "license": [
         "MIT"
     ],

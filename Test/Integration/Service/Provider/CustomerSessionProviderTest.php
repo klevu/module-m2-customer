@@ -41,11 +41,11 @@ class CustomerSessionProviderTest extends TestCase
     /**
      * @var MockObject|SessionManagerInterface
      */
-    private SessionManagerInterface|MockObject $mockSessionManager;
+    private SessionManagerInterface|MockObject|null $mockSessionManager = null;
     /**
-     * @var array|false|string[]
+     * @var string[]|false|null
      */
-    private array|false $keys;
+    private array|false|null $keys = null;
 
     /**
      * @return void

@@ -11,7 +11,7 @@ namespace Klevu\Customer\Service\Provider;
 interface CustomerSessionProviderInterface
 {
     /**
-     * @return string|null
+     * @return string
      */
-    public function get(): ?string;
+    public function get(): string;
 }
