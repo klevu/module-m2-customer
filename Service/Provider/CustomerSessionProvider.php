@@ -8,43 +8,44 @@ declare(strict_types=1);
 
 namespace Klevu\Customer\Service\Provider;
 
+use Klevu\Customer\Service\HasherInterface;
 use Magento\Framework\Encryption\Encryptor;
-use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Framework\Session\SessionManagerInterface;
 
 class CustomerSessionProvider implements CustomerSessionProviderInterface
 {
     /**
-     * @var EncryptorInterface
+     * @var HasherInterface
      */
-    private readonly EncryptorInterface $encryptor;
+    private HasherInterface $hasher;
     /**
      * @var SessionManagerInterface
      */
     private readonly SessionManagerInterface $sessionManager;
 
     /**
-     * @param EncryptorInterface $encryptor
+     * @param HasherInterface $hasher
      * @param SessionManagerInterface $sessionManager
      */
     public function __construct(
-        EncryptorInterface $encryptor,
+        HasherInterface $hasher,
         SessionManagerInterface $sessionManager,
     ) {
-        $this->encryptor = $encryptor;
+        $this->hasher = $hasher;
         $this->sessionManager = $sessionManager;
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function get(): ?string
+    public function get(): string
     {
         $sessionId = $this->sessionManager->getSessionId();
 
-        return $this->encryptor->hash( // @phpstan-ignore-line
-            $sessionId,
-            Encryptor::HASH_VERSION_SHA256,
+        return $this->hasher->execute(
+            data: $sessionId,
+            version: Encryptor::HASH_VERSION_SHA256,
+            binary: false,
         );
     }
 }
